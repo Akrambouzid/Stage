@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
     console.log('[GET ROUTE]');
     res.send('HELLO FROM HOMEPAGE');
 })
-app.post('/users', (req, res) => {
+app.get('/users', (req, res) => {
+  
     const role = '1';
     const password = 'staticpassword';
     const username = 'staticuser';
