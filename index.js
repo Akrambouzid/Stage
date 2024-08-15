@@ -24,24 +24,34 @@ app.get('/', (req, res) => {
     res.send('HELLO FROM HOMEPAGE');
 })
 app.get('/users', (req, res) => {
-  
-    const role = '1';
-    const password = 'staticpassword';
-    const username = 'staticuser';
-    const email = 'staticuser@example.com';
-    
-    db.query(
-        'INSERT INTO User (role, password, username, email) VALUES (?, ?, ?, ?)',
-        [role, password, username, email],
-        (err, result) => {
-            if (err) {
-                console.error('Error executing query: ' + err.stack);
-                res.status(400).send('Error creating user');
-                return;
-            }
-            res.status(201).send('User created successfully');
+    db.query('SELECT * FROM User', (err, result) => {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            res.status(400).send('Error fetching users');
+            return;
         }
-    );  
+        res.status(200).send(result);
+    });
+
+
+
+})
+app.post('/register', (req, res) => {
+    const sql = 'INSERT INTO User (name, email, password,role) VALUES (?, ?, ?,?)';  
+    bycrypt.hash(req.body.password.toString(),5,(err,hash)=>{
+      if(err) return res.json("Error hashing password");
+      const values = [req.body.name, req.body.email, hash,req.body.role];
+      db.query(sql, values, (err, result) => {
+          if (err) {
+              console.error('Error executing query: ' + err.stack);
+              res.status(400).send('Error registering user');
+              return;
+          }
+          res.status(200).send('User registered successfully');
+      });
+    }
+    )
+
 });
 
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`));
