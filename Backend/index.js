@@ -1,10 +1,17 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mysql from 'mysql';
-import bcrypt from 'bcrypt';
+import express from'express';
+import path from'path';
+import mysql from'mysql';
+import cors from'cors';
+import { fileURLToPath } from'url';
+import { dirname } from'path';
+
+// Determine the directory name of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 5000;
+app.use(express.json()); 
+app.use(cors());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -20,58 +27,34 @@ db.connect((err) => {
     console.log('Connected to MySQL as ID ' + db.threadId);
 });
 
-app.use(bodyParser.json());
-app.get('/users', (req, res) => {
-    db.query('SELECT * FROM User', (err, result) => {
+// API route to handle signup
+app.post('/register', (req, res) => {
+    const { email, username, password } = req.body;
+
+    if (!email || !username || !password) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Insert user into the database
+    const query = 'INSERT INTO user (email, username, password,role) VALUES (?, ?, ?,?)';
+    db.query(query, [email, username, password,1], (err, results) => {
         if (err) {
-            console.error('Error executing query: ' + err.stack);
-            res.status(400).send('Error fetching users');
-            return;
+            console.error('Error inserting user:', err);
+            return res.status(500).json({ message: 'Error registering user' });
         }
-        res.status(200).send(result);
+        res.status(201).json({ message: 'User registered successfully' });
     });
 });
 
-app.get('/', (req, res) => {
-    console.log('[GET ROUTE]');
-    res.send('HELLO FROM HOMEPAGE');
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+// Serve the React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
-app.get('/users', (req, res) => {
-    db.query('SELECT * FROM User', (err, result) => {
-        if (err) {
-            console.error('Error executing query: ' + err.stack);
-            res.status(400).send('Error fetching users');
-            return;
-        }
-        res.status(200).send(result);
-    });
+const PORT = 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
-app.post('/signup', (req, res) => {  // changed to lowercase to avoid case sensitivity issues
-  console.log('Request Body:', req.body);
-  
-  // Validate request body
-  const { name, email, password, role } = req.body;
-  if (!name || !email || !password || !role) {
-      return res.status(400).json({ error: 'All fields (name, email, password, role) are required' });
-  }
-
-  const sql = 'INSERT INTO User (name, email, password, role) VALUES (?, ?, ?, ?)';  
-  bcrypt.hash(password.toString(), 5, (err, hash) => {
-      if (err) return res.status(500).json("Error hashing password");
-      
-      const values = [name, email, hash, role];
-      db.query(sql, values, (err, result) => {
-          if (err) {
-              console.error('Error executing query: ' + err.stack);
-              return res.status(500).send('Error registering user');
-          }
-          res.status(200).send('User registered successfully');
-      });
-  });
-});
-
-
-
-app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`));
