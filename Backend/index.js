@@ -21,6 +21,16 @@ db.connect((err) => {
 });
 
 app.use(bodyParser.json());
+app.get('/users', (req, res) => {
+    db.query('SELECT * FROM User', (err, result) => {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            res.status(400).send('Error fetching users');
+            return;
+        }
+        res.status(200).send(result);
+    });
+});
 
 app.get('/', (req, res) => {
     console.log('[GET ROUTE]');
