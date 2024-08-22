@@ -1,6 +1,31 @@
-import React from 'react';
+import React,{ useState } from 'react';
+import axios from 'axios';
+
 
 const LoginMain = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        if (!email  || !password ) {
+            alert('All fields are required');
+            return;
+        }
+        try{
+            const response = await axios.get('http://localhost:5000/signin', {
+                email,
+              
+                password
+            
+        });
+        alert(response.data.message);
+       
+
+    }
+    catch(error){
+        alert('Error: ');
+    }
+};
     return (
         <>
             <div className="react-login-page react-signup-page pt---120 pb---120">
@@ -8,18 +33,28 @@ const LoginMain = () => {
                     <div className="row">                            
                         <div className="col-lg-12">
                             <div className="login-right-form">
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="login-top">
                                         <h3>Login</h3>
-                                        <p>Don't have an account yet? <a href="signup.html">Sign up for free</a></p>
+                                        <p>Don't have an account yet? <a href="http://localhost:5000/register">Sign up for free</a></p>
                                     </div>
                                     <p>
                                         <label>Email</label>
-                                        <input placeholder="Email" type="email" id="email" name="email" />
+                                        <input type="email" value={email}
+                                        onChange={(e=>setEmail(e.target.value))}
+                                        className="form-control"
+                                        placeholder="Email"
+                                         />
                                     </p>
                                     <p>
                                         <label>Password</label>
-                                        <input placeholder="Password" type="password" id="pass" name="pass" />
+                                        <input
+                                        type="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="form-control"
+                                        placeholder="Password"
+                                    />
                                     </p>
                                     <div className="back-check-box">
                                         <input type="checkbox" id="box-1" /> Remember me
