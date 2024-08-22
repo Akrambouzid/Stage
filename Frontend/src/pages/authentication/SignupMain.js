@@ -1,27 +1,33 @@
-importReact, { useState } from'react';
-import axios from'axios';
-import { useNavigate } from'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-constSignupMain = () => {
+const SignupMain = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [loading, setLoading] = useState(false); // Loading state
     const navigate = useNavigate();
 
-    consthandleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);  // Set loading to true
+
         if (!email || !username || !password || !confirmPassword) {
             alert('All fields are required');
+            setLoading(false);  // Stop loading
             return;
         }
         if (password !== confirmPassword) {
             alert('Passwords do not match');
+            setLoading(false);  // Stop loading
             return;
         }
         if (!termsAccepted) {
             alert('Please accept the terms and conditions');
+            setLoading(false);  // Stop loading
             return;
         }
 
@@ -34,9 +40,12 @@ constSignupMain = () => {
             alert(response.data.message);
             navigate('/login');
         } catch (error) {
-            alert('Error: ' + error.response?.data?.message || error.message);
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        } finally {
+            setLoading(false);  // Stop loading
         }
     };
+
     return (
         <div className="login-area">
             <div className="container">
@@ -103,7 +112,9 @@ constSignupMain = () => {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-primary">Sign up</button>
+                                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                                        {loading ? 'Signing up...' : 'Sign up'}
+                                    </button>
                                 </div>
                             </div>
                         </div>
