@@ -1,6 +1,6 @@
-import React, { useState } from'react';
-import axios from'axios';
-import { useNavigate } from'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignupMain = () => {
     const [email, setEmail] = useState('');
@@ -8,20 +8,26 @@ const SignupMain = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [loading, setLoading] = useState(false); // Loading state
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);  // Set loading to true
+
         if (!email || !username || !password || !confirmPassword) {
             alert('All fields are required');
+            setLoading(false);  // Stop loading
             return;
         }
         if (password !== confirmPassword) {
             alert('Passwords do not match');
+            setLoading(false);  // Stop loading
             return;
         }
         if (!termsAccepted) {
             alert('Please accept the terms and conditions');
+            setLoading(false);  // Stop loading
             return;
         }
 
@@ -34,7 +40,9 @@ const SignupMain = () => {
             alert(response.data.message);
             navigate('/login');
         } catch (error) {
-            alert('Error: ' + error.response?.data?.message || error.message);
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        } finally {
+            setLoading(false);  // Stop loading
         }
     };
 
@@ -87,8 +95,22 @@ const SignupMain = () => {
                                             className="custom-control-input"
                                             id="termsAccepted"
                                         />
-                                        
-                                        <label className="custom-control-label"htmlFor="termsAccepted">I agree to the terms and conditions</label></div></div><div className="form-group"><button type="submit" className="btn btn-primary">Sign up</button></div></div></div></form></div></div></div>
+                                        <label className="custom-control-label" htmlFor="termsAccepted">
+                                            I agree to the terms and conditions
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                                        {loading ? 'Signing up...' : 'Sign up'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 
