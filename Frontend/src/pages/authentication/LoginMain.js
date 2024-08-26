@@ -1,31 +1,38 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const LoginMain = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const handleSubmit = async(e)=>{
+    const [loading, setLoading] = useState(false); // Loading state
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email  || !password ) {
+        setLoading(true);
+        
+        if (!email || !password) {
             alert('All fields are required');
+            setLoading(false); // Reset loading if validation fails
             return;
         }
-        try{
-            const response = await axios.get('http://localhost:5000/signin', {
+    
+        try {
+            const response = await axios.post('http://localhost:5000/login', {
                 email,
-              
                 password
-            
-        });
-        alert(response.data.message);
-       
-
-    }
-    catch(error){
-        alert('Error: ');
-    }
-};
+            });
+            alert(response.data.message);
+            navigate('/register');
+        } catch (error) {
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        } finally {
+            setLoading(false);  
+        }
+    };
     return (
         <>
             <div className="react-login-page react-signup-page pt---120 pb---120">

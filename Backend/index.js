@@ -46,8 +46,7 @@ app.post('/register', (req, res) => {
         res.status(201).json({ message: 'User registered successfully' });
     });
 });
-//donnez la methode sign in
-// API route to handle sign in
+
 app.post('/login', (req, res) => {
     console.log('Request to /login');
     const { email, password } = req.body;
@@ -79,6 +78,23 @@ app.post('/login', (req, res) => {
 });
 
 
+app.post('/ajoutevent',(req,res)=>{
+    const {titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien} = req.body;
+    lien = "aaaa";
+
+   if(!titre||!description||!date||!lien||!lieu||!prix||!nombrePlace||!placeReservee||!numTel){
+       return res.status(400).json({message:'All fields are required'});
+   }
+   const query = 'INSERT INTO event (titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien) VALUES (?,?,?,?,?,?,?,?,?)';
+    db.query(query,[titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien],(err,res)=>{
+         if(err){
+              console.error('Error inserting event:',err);
+              return res.status(500).json({message:'Error adding event'});
+         }
+         res.status(201).json({message:'Event added successfully'});
+    });
+
+})
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'frontend/build')));
