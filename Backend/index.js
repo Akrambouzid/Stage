@@ -4,6 +4,9 @@ import mysql from'mysql';
 import cors from'cors';
 import { fileURLToPath } from'url';
 import { dirname } from'path';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 // Determine the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +15,15 @@ const __dirname = dirname(__filename);
 const app = express();
 app.use(express.json()); 
 app.use(cors());
+app.use(session({
+    secret : 'secret',
+    resave : false,
+    saveUninitialized : false,
+    cookie : {maxAge : 1000*60*60*24}
+
+}));
+
+
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -72,8 +84,9 @@ app.post('/login', (req, res) => {
         if (user.password !== password) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-
+        req.session.user = user;
         res.status(200).json({ message: 'User signed in successfully' });
+        console.log(req.session.user);
     });
 });
 
