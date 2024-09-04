@@ -23,7 +23,14 @@ const LoginMain = () => {
                 email,
                 password
             });
+            const role = response.data.user.role;
+            console.log (role);
+            alert(role);
             alert(response.data.message);
+            if (role === '1') {
+                navigate('/Dashboard');
+            } else 
+
             navigate('/register');
         } catch (error) {
             alert('Error: ' + (error.response?.data?.message || error.message));

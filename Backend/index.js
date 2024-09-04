@@ -67,7 +67,6 @@ app.post('/login', (req, res) => {
         return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    // Check if the user exists in the database
     const query = 'SELECT * FROM user WHERE email = ?';
     db.query(query, [email], (err, results) => {
         if (err) {
@@ -84,35 +83,59 @@ app.post('/login', (req, res) => {
         if (user.password !== password) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+
         req.session.user = user;
-        res.status(200).json({ message: 'User signed in successfully' });
-        console.log(req.session.user);
+        return res.status(200).json({ message: 'User signed in successfully', user: req.session.user });
     });
 });
 
 
-app.post('/ajoutevent',(req,res)=>{
-    const {titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien} = req.body;
-    lien = "aaaa";
+app.post('/ajoutevent', (req, res) => {
+    const { titre, description, date, lieu, prix, nombrePlace, placeReservee, numTel, lien } = req.body;
+    if (!titre || !description || !date || !lieu || !prix || !nombrePlace  || !numTel || !lien) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+    const query = 'INSERT INTO event (titre, description, date, lieu, prix, nombrePlace, placeReservee, numTel, lien) VALUES (?,?,?,?,?,?,?,?,?)';
+    
+    db.query(query, [titre, description, date, lieu, prix, nombrePlace, 1, numTel, lien], (err, result) => {
+      if (err) {
+        console.error('Error inserting event:', err);
+        return res.status(500).json({ message: 'Error adding event' });
+      }
 
-   if(!titre||!description||!date||!lien||!lieu||!prix||!nombrePlace||!placeReservee||!numTel){
-       return res.status(400).json({message:'All fields are required'});
-   }
-   const query = 'INSERT INTO event (titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien) VALUES (?,?,?,?,?,?,?,?,?)';
-    db.query(query,[titre,description,date,lieu,prix,nombrePlace,placeReservee,numTel,lien],(err,res)=>{
-         if(err){
-              console.error('Error inserting event:',err);
-              return res.status(500).json({message:'Error adding event'});
-         }
-         res.status(201).json({message:'Event added successfully'});
+      return res.status(201).json({ message: 'Event added successfully' });
     });
+  });
+  app.get('/affevent', (req, res) => {
+    const query = 'SELECT * FROM event';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error querying events:', err);
+            return res.status(500).json({ message: 'Error getting events' });
+        }
+        console.log(results);  // Check if the results array has data
+        res.status(200).json(results);
+    });
+});
+app.get('/affevent/:id', (req, res) => {
+    const id = req.params.id;
+    const query = 'SELECT * FROM event WHERE id = ?';
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('Error querying event:', err);
+            return res.status(500).json({ message: 'Error getting event' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+        res.status(200).json(results[0]);
+    });
+});
+  
 
-})
-
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
-// Serve the React app
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
    

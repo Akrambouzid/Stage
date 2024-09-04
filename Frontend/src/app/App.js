@@ -15,6 +15,7 @@ import Signup from '../pages/authentication/signup';  // Assuming this is the fi
 import Contact from '../pages/contact';
 import Error from '../pages/404';
 import LoadTop from '../components/ScrollTop/LoadTop';
+import Dashboard from "../pages/dashboard/DashboardMain";
 
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,9 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Signup />} />  {/* Signup route */}
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/Dashboard" element={<Dashboard />} />
+
+                    
                     <Route path='*' element={<Error />} />
                 </Routes>
             </>

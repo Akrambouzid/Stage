@@ -13,21 +13,21 @@ const SignupMain = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);  // Set loading to true
+        setLoading(true); 
 
         if (!email || !username || !password || !confirmPassword) {
             alert('All fields are required');
-            setLoading(false);  // Stop loading
+            setLoading(false);
             return;
         }
         if (password !== confirmPassword) {
             alert('Passwords do not match');
-            setLoading(false);  // Stop loading
+            setLoading(false);
             return;
         }
         if (!termsAccepted) {
             alert('Please accept the terms and conditions');
-            setLoading(false);  // Stop loading
+            setLoading(false);
             return;
         }
 
@@ -42,7 +42,7 @@ const SignupMain = () => {
         } catch (error) {
             alert('Error: ' + (error.response?.data?.message || error.message));
         } finally {
-            setLoading(false);  // Stop loading
+            setLoading(false); 
         }
     };
 
