@@ -10,7 +10,7 @@ const EventMain = () => {
 
     useEffect(() => {
         axios.get('http://localhost:5000/affevent')
-                    .then(response => {
+            .then(response => {
                 console.log(response.data);
                 setEvents(response.data);
                 setLoading(false);
@@ -21,7 +21,6 @@ const EventMain = () => {
             });
     }, []);
     
-
     if (loading) {
         return <div>Loading events...</div>;
     }
@@ -53,16 +52,15 @@ const EventMain = () => {
                         return (
                             <div className="col-lg-3" key={index}>
                                 <SingleEvent
-                                // eventID, eventTitre, eventDate, eventPrix, eventPlace,eventPlaceReservee,lieu,description
                                     eventID={data.id}
                                     eventTitre={data.titre}
-                                    eventDate={data.date}
+                                    eventDate={data.date.split('T')[0]}
                                     eventPrix={data.prix}
                                     eventPlace={data.nombrePlace}
                                     eventPlaceReservee={data.nombrePlaceReservee}
                                     lieu={data.lieu}
                                     description={data.description}
-                                  
+                                    image={data.image}
                                 />
                             </div>
                         );

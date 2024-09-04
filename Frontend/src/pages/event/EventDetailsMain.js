@@ -28,7 +28,7 @@ const EventDetails = (props) => {
                 console.error('Error fetching events:', error);
                 setLoading(false);
             });
-    }, [eventID]);  // Run the effect when eventID changes
+    }, [eventID]);  // 
 
     // If loading, show a loader
     if (loading) {

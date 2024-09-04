@@ -20,7 +20,7 @@
         {
             "id": 2,
             "image": "2.jpg",
-            "bannerImg": "event-banner2.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "14",
             "date": "April, 2022",
             "startTime": "12:00PM",
@@ -54,7 +54,7 @@
         {
             "id": 4,
             "image": "4.jpg",
-            "bannerImg": "event-banner1.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "10",
             "date": "April, 2022",
             "startTime": "03:00PM",
@@ -71,7 +71,7 @@
         {
             "id": 5,
             "image": "5.jpg",
-            "bannerImg": "event-banner2.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "10",
             "date": "May, 2022",
             "startTime": "10:30AM",
@@ -88,7 +88,7 @@
         {
             "id": 6,
             "image": "6.jpg",
-            "bannerImg": "event-banner2.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "14",
             "date": "April, 2022",
             "startTime": "12:00PM",
@@ -122,7 +122,7 @@
         {
             "id": 8,
             "image": "4.jpg",
-            "bannerImg": "event-banner1.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "10",
             "date": "April, 2022",
             "startTime": "03:00PM",
@@ -139,7 +139,7 @@
         {
             "id": 9,
             "image": "5.jpg",
-            "bannerImg": "event-banner2.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "10",
             "date": "May, 2022",
             "startTime": "10:30AM",
@@ -156,7 +156,7 @@
         {
             "id": 10,
             "image": "6.jpg",
-            "bannerImg": "event-banner2.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "14",
             "date": "April, 2022",
             "startTime": "12:00PM",
@@ -190,7 +190,43 @@
         {
             "id": 12,
             "image": "4.jpg",
-            "bannerImg": "event-banner1.jpg",
+            "bannerImg": "event-banner.jpg",
+            "dayCount": "10",
+            "date": "April, 2022",
+            "startTime": "03:00PM",
+            "endTime": "04:30PM",
+            "category": "Education",
+            "title": "The Importance Of Intrinsic Motivation.",
+            "location": "New York, USA",
+            "cost": "$75.00",
+            "host": "Penny Tool",
+            "totalSlot": "250",
+            "bookedSlot": "25",
+            "phone": "+(624) 763 552 420"
+        }
+        ,
+        {
+            "id": 13,
+            "image": "4.jpg",
+            "bannerImg": "event-banner.jpg",
+            "dayCount": "10",
+            "date": "April, 2022",
+            "startTime": "03:00PM",
+            "endTime": "04:30PM",
+            "category": "Education",
+            "title": "The Importance Of Intrinsic Motivation.",
+            "location": "New York, USA",
+            "cost": "$75.00",
+            "host": "Penny Tool",
+            "totalSlot": "250",
+            "bookedSlot": "25",
+            "phone": "+(624) 763 552 420"
+        }
+        ,
+        {
+            "id": 14,
+            "image": "4.jpg",
+            "bannerImg": "event-banner.jpg",
             "dayCount": "10",
             "date": "April, 2022",
             "startTime": "03:00PM",
