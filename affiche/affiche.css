@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.media-slider {
+    width: 100%;
+    height: 0;
+    padding-top: 37.5%; /* Ratio 16:9 (9 / 16 = 0.5625 ; donc padding = 56.25%) */
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.media-slider .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    transition: left 0.5s ease, opacity 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-slider .slide.active {
+    left: 0;
+    opacity: 1;
+}
+
+.media-slider img, .media-slider video {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Style des boutons Précédent et Suivant */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 100;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+footer {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer img {
+    width: 100%;
+    height: auto;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Photos et Vidéos</title>
+    <link rel="stylesheet" href="affiche.css">
+</head>
+<body>
+
+    <!-- Section pour les photos et les vidéos -->
+    <div class="media-slider">
+        <div class="slide active">
+            <img src="1.jpg" alt="Photo 1">
+        </div>
+        <div class="slide">
+            <video controls>
+                <source src="video1.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture des vidéos.
+            </video>
+        </div>
+        <div class="slide">
+            <img src="1 copie.jpg" alt="Photo 2">
+        </div>
+
+        <!-- Boutons pour faire défiler les slides -->
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <img src="bond.jpg" alt="Footer Image">
+    </footer>
+
+    <!-- JavaScript pour le slider -->
+    <script src="script.js"></script>
+</body>
+</html>
