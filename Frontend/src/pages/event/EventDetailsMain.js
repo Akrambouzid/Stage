@@ -13,7 +13,6 @@ const EventDetails = (props) => {
     const [events, setEvents] = useState(null);  // Initially null to check for data later
     const [loading, setLoading] = useState(true);
 
-    // Extract eventID from props (or from route params, depending on your setup)
     const { eventID } = props;
 
     useEffect(() => {

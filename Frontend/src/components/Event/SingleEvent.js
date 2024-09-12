@@ -8,14 +8,9 @@ const SingleEvent = (props) => {
         <div className={eventClass ? eventClass : 'event__card'}>
             <div className="event__card--content">
                 <div className="event__card--content-area">
-                    {/* Image Rendering */}
-                    {image && (
-                        <img 
-                            src={`C:\Users\oussa\OneDrive\Bureau\Akram\Stage\Backend/uploads/${image}`} 
-                            alt={eventTitre || 'Event Image'} 
-                            className="event-image"
-                        />
-                    )}
+                    <img src={require(`C:\\Users\\oussa\\OneDrive\\Bureau\\Akram\\Stage\\Backend/uploads/${image}`)} alt={eventTitre} />
+                    
+                   
 
                     <div className="event__card--date">
                         {eventDate ? eventDate : '12th May, 2021'}

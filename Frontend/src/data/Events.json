@@ -171,7 +171,7 @@
             "phone": "+(624) 763 552 420"
         },
         {
-            "id": 11,
+            "id": 16,
             "image": "3.jpg",
             "bannerImg": "event-banner3.jpg",
             "dayCount": "26",
@@ -240,5 +240,45 @@
             "bookedSlot": "25",
             "phone": "+(624) 763 552 420"
         }
+        ,
+        {
+            "id": 15,
+            "image": "4.jpg",
+            "bannerImg": "event-banner.jpg",
+            "dayCount": "10",
+            "date": "April, 2022",
+            "startTime": "03:00PM",
+            "endTime": "04:30PM",
+            "category": "Education",
+            "title": "The Importance Of Intrinsic Motivation.",
+            "location": "New York, USA",
+            "cost": "$75.00",
+            "host": "Penny Tool",
+            "totalSlot": "250",
+            "bookedSlot": "25",
+            "phone": "+(624) 763 552 420"
+        }
+        ,
+        {
+            "id": 19,
+            "image": "4.jpg",
+            "bannerImg": "event-banner.jpg",
+            "dayCount": "10",
+            "date": "April, 2022",
+            "startTime": "03:00PM",
+            "endTime": "04:30PM",
+            "category": "Education",
+            "title": "The Importance Of Intrinsic Motivation.",
+            "location": "New York, USA",
+            "cost": "$75.00",
+            "host": "Penny Tool",
+            "totalSlot": "250",
+            "bookedSlot": "25",
+            "phone": "+(624) 763 552 420"
+        }
+        
+
+        
+
 
     ]

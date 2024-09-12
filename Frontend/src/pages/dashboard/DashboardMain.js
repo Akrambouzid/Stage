@@ -44,7 +44,7 @@ const Dashboard = () => {
                 }
             });
             alert(response.data.message);
-            navigate('/login');
+            navigate('/event');
         } catch (error) {
             alert('Error: ' + (error.response?.data?.message || error.message));
         } finally {
