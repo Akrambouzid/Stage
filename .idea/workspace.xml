@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d3d1297-0819-4d81-b6bf-7995986985ce" name="Changes" comment="" />
+    <list default="true" id="5d3d1297-0819-4d81-b6bf-7995986985ce" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/event/EventSidebarMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/event/EventSidebarMain.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +54,7 @@
       <workItem from="1724346379726" duration="21000" />
       <workItem from="1724678385496" duration="28000" />
       <workItem from="1726252828236" duration="7000" />
+      <workItem from="1726356123627" duration="3000" />
     </task>
     <servers />
   </component>

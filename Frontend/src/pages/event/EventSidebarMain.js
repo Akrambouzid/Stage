@@ -9,9 +9,9 @@ const EventSidebarMain = () => {
     const [loading, setLoading] = React.useState(true);
 
     useEffect(() => {
-        axios.get('https://699e-197-17-64-243.ngrok-free.app/affevent')
+        axios.get('http://localhost:5000/affevent')
             .then(response => {
-                console.log('Response:', response.data); // Log the response data
+            
                 setEvents(Array.isArray(response.data) ? response.data : []);
                 setLoading(false);
             })
