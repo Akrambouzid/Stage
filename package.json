@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Akrambouzid/Stage/issues"
   },
-  "homepage": "https://github.com/Akrambouzid/Stage#readme"
+  "homepage": "https://github.com/Akrambouzid/Stage#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
 }
