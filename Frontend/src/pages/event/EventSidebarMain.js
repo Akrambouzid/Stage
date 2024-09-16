@@ -16,7 +16,8 @@ const EventSidebarMain = () => {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Error fetching events:', error);
+
+                console.error('Akram', error);
                 setLoading(false);
             });
     }, []);
