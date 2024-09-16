@@ -28,7 +28,7 @@ const EventSidebar = () => {
                 </div>
             </div>
 
-            <Footer />
+            
 
         </>
     );

@@ -16,6 +16,7 @@ import Contact from '../pages/contact';
 import Error from '../pages/404';
 import LoadTop from '../components/ScrollTop/LoadTop';
 import Dashboard from "../pages/dashboard/DashboardMain";
+import HomePage from "../pages/home";
 
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +34,7 @@ const App = () => {
             <>
                 <LoadTop />
                 <Routes>
-                    <Route path="/" exact element={<Home />} />
+                    <Route path="/" exact element={<HomePage />} />
                     <Route path="/home-2" element={<HomeTwo />} />
                     <Route path="/home-3" element={<HomeThree />} />
                     <Route path="/about" element={<About />} />
