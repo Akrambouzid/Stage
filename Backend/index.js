@@ -88,6 +88,7 @@ app.post('/login', (req, res) => {
             console.error('Error querying user:', err);
             return res.status(500).json({ message: 'Error signing in' });
         }
+        
 
         if (results.length === 0 || results[0].password !== password) {
             return res.status(401).json({ message: 'Invalid email or password' });
