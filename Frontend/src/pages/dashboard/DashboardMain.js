@@ -38,7 +38,7 @@ const Dashboard = () => {
         if (image) formData.append('image', image);
 
         try {
-            const response = await axios.post('http://localhost:5000/ajoutevent', formData, {
+            const response = await axios.post('http://192.168.1.7:5000/ajoutevent', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

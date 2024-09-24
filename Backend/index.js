@@ -44,11 +44,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.1.7',
+    port: '3306',
+    user: 'oussama',
+    password: 'oussama',
     database: 'projet'
 });
-
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL: ' + err.stack);

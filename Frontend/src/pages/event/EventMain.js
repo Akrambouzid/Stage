@@ -65,6 +65,7 @@ const EventMain = () => {
                             </div>
                         );
                     })}
+                    
                 </div>  
                 <ul className="back-pagination pt---20">
                     <li><Link to="#">1</Link></li>
