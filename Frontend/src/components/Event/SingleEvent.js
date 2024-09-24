@@ -8,7 +8,7 @@ const SingleEvent = (props) => {
         <div className={eventClass ? eventClass : 'event__card'}>
             <div className="event__card--content">
                 <div className="event__card--content-area">
-                    <img src={require(`C:\\Users\\oussa\\OneDrive\\Bureau\\Akram\\Stage\\Backend/uploads/${image}`)} alt={eventTitre} />
+                    <img src={require(`C:/Users/Akram/Desktop/Akram//Stage/Backend/uploads/${image}`)} alt={eventTitre} />
                     
                    
 

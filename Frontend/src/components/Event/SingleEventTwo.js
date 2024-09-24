@@ -7,7 +7,7 @@ const SingleEventTwo = (props) => {
     return (
         <div class={eventClass ? eventClass : 'event__card'}>
             <div class="case-img">
-            <img src={require(`C:\\Users\\oussa\\OneDrive\\Bureau\\Akram\\Stage\\Backend/uploads/${image}`)} alt={eventTitre} />
+            <img src={require(`C:/Users/Akram/Desktop/Akram/Stage/Backend/uploads/${image}`)} alt={eventTitre} />
             </div>
             <div class="event__card--content">
                 <div class="event__card--content-area">
