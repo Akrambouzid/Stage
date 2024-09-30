@@ -9,7 +9,7 @@ const EventSidebarMain = () => {
 
     // Fetch events from the backend
     useEffect(() => {
-        axios.get('http://localhost:5000/affevent')
+        axios.get('http://192.168.1.16:5000/affevent')
             .then(response => {
                 setEvents(Array.isArray(response.data) ? response.data : []);
                 setLoading(false);
@@ -41,7 +41,7 @@ const EventSidebarMain = () => {
     return (
         <div className="full-screen-image-container" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
          
-             <img src={require('C:/Users/Akram/Desktop/Akram//Stage/Backend/uploads/${currentEvent.image}')}  />
+             <img src={require('C:/Users/Akram/Desktop/Akram/Stage/Backend/uploads/${currentEvent.image}')}  />
         </div>
     );
 }
