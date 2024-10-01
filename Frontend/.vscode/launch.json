@@ -7,7 +7,7 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Launch Edge against localhost",
+            "name": "Launch Edge against 192.168.14.127",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         }

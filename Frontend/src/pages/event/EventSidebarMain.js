@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -7,9 +6,8 @@ const EventSidebarMain = () => {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Fetch events from the backend
     useEffect(() => {
-        axios.get('http://192.168.1.16:5000/affevent')
+        axios.get('http://192.168.14.127:5000/affevent')
             .then(response => {
                 setEvents(Array.isArray(response.data) ? response.data : []);
                 setLoading(false);
@@ -20,11 +18,11 @@ const EventSidebarMain = () => {
             });
     }, []);
 
-    // Set an interval to change the image every 10 seconds
+    // Set an interval to change the image every 5 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex(prevIndex => (prevIndex + 1) % events.length);
-        }, 5000); // Change every 10 seconds
+        }, 5000); // Change every 5 seconds
 
         return () => clearInterval(interval); // Cleanup the interval
     }, [events.length]);
@@ -36,12 +34,14 @@ const EventSidebarMain = () => {
     // Get the current event to display
     const currentEvent = events[currentIndex];
 
-    
-   
     return (
         <div className="full-screen-image-container" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-         
-             <img src={require('C:/Users/Akram/Desktop/Akram/Stage/Backend/uploads/${currentEvent.image}')}  />
+            {/* Use the full URL to the backend's uploads folder */}
+            <img
+                src={`http://192.168.14.127:5000/uploads/${currentEvent.image}`}
+                alt={currentEvent.titre}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
         </div>
     );
 }

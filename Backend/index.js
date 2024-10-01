@@ -26,13 +26,12 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-// Ensure uploads directory exists
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
 
-// Multer configuration for file uploads
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, uploadDir);
@@ -44,10 +43,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const db = mysql.createConnection({
-    host: '192.168.1.16',
+    host: '192.168.14.127',
     port: '3306',
-    user: 'akram',
-    password: 'akram',
+    user: 'oussama',
+    password: 'oussama',
     database: 'projet'
 });
 
@@ -103,8 +102,15 @@ app.post('/ajoutevent', upload.single('image'), (req, res) => {
     const { titre, description, date, lieu, prix, nombrePlace, numTel, lien } = req.body;
     const image = req.file ? req.file.filename : null;
 
+    console.log('File upload details:', req.file);  // Log file upload info
+    console.log('Upload directory:', uploadDir);  // Log the path to uploads folder
+
     if (!titre || !description || !date || !lieu || !prix || !nombrePlace || !numTel) {
         return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    if (!image) {
+        return res.status(400).json({ message: 'Image is required' });
     }
 
     const query = 'INSERT INTO event (titre, description, date, lieu, prix, nombrePlace, placeReservee, numTel, lien, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -116,6 +122,8 @@ app.post('/ajoutevent', upload.single('image'), (req, res) => {
         return res.status(201).json({ message: 'Event added successfully' });
     });
 });
+
+
 
 app.get('/affevent', (req, res) => {
     const query = 'SELECT * FROM event';
@@ -144,7 +152,7 @@ app.get('/affevent/:id', (req, res) => {
 });
 
 // Serve static files from the frontend build directory
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));

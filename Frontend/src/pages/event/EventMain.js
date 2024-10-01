@@ -9,7 +9,7 @@ const EventMain = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/affevent')
+        axios.get('http://192.168.14.127:5000/affevent')
             .then(response => {
                 console.log(response.data);
                 setEvents(response.data);
