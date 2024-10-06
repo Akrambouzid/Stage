@@ -17,7 +17,7 @@ const EventDetails = (props) => {
 
     useEffect(() => {
         // Make sure to use backticks and template literals for string interpolation
-        axios.get(`http://192.168.14.127:5000/affevent/${eventID}`)
+        axios.get(`http://localhost:5000/affevent/${eventID}`)
             .then(response => {
                 console.log(response.data);
                 setEvents(response.data);

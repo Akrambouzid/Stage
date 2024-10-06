@@ -43,10 +43,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const db = mysql.createConnection({
-    host: '192.168.14.127',
+    host: '192.168.1.98',
     port: '3306',
-    user: 'oussama',
-    password: 'oussama',
+    user: 'akram',
+    password: 'akram',
     database: 'projet'
 });
 
@@ -77,6 +77,7 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
+    alert(email);
 
     if (!email || !password) {
         return res.status(400).json({ message: 'Email and password are required' });
@@ -84,6 +85,7 @@ app.post('/login', (req, res) => {
 
     const query = 'SELECT * FROM user WHERE email = ?';
     db.query(query, [email], (err, results) => {
+        
         if (err) {
             console.error('Error querying user:', err);
             return res.status(500).json({ message: 'Error signing in' });

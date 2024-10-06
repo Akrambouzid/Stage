@@ -7,7 +7,7 @@ const EventSidebarMain = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        axios.get('http://192.168.14.127:5000/affevent')
+        axios.get('http://192.168.1.98:5000/affevent')
             .then(response => {
                 setEvents(Array.isArray(response.data) ? response.data : []);
                 setLoading(false);
@@ -38,7 +38,7 @@ const EventSidebarMain = () => {
         <div className="full-screen-image-container" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
             {/* Use the full URL to the backend's uploads folder */}
             <img
-                src={`http://192.168.14.127:5000/uploads/${currentEvent.image}`}
+                src={`http://192.168.1.98:5000/uploads/${currentEvent.image}`}
                 alt={currentEvent.titre}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />

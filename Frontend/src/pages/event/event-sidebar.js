@@ -1,9 +1,9 @@
 import React  from 'react';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Breadcrumb from '../../components/Breadcrumb';
 import EventSidebarMain from './EventSidebarMain';
 import ScrollToTop from '../../components/ScrollTop';
+import ImageWithFooter from '../../components/Footer/ImageWithFooter';
 
 
 const EventSidebar = () => {
@@ -28,7 +28,7 @@ const EventSidebar = () => {
                 </div>
             </div>
 
-            <Footer />
+            <ImageWithFooter />
 
         </>
     );
