@@ -8,7 +8,6 @@ const SingleEvent = (props) => {
         <div className={eventClass ? eventClass : 'event__card'}>
             <div className="event__card--content">
                 <div className="event__card--content-area">
-                    <img src={require(`C:/Users/Akram/Desktop/Akram/Stage/Frontend/src/components/Event/${image}`)} alt={eventTitre} />
                     
                    
 

@@ -44,10 +44,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const db = mysql.createConnection({
-    host: '192.168.1.7',
+    host: 'localhost',
     port: '3306',
-    user: 'oussama',
-    password: 'oussama',
+    user: 'root',
+    password: '',
     database: 'projet'
 });
 db.connect((err) => {
